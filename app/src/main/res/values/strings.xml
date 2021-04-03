@@ -2,7 +2,10 @@
     <string name="app_name">FormationJCIKhniss</string>
 
     <string name="hint_user_name">add your name</string>
+    <string name="hint_user_email">add your email</string>
     <string name="hint_password">add your password</string>
     <string name="btn_login">Login</string>
+    <string name="btn_disconnect">Disconnect</string>
+    <string name="btn_save">save</string>
 
 </resources>
