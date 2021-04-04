@@ -1,5 +1,6 @@
 package com.app.formationjcikhniss;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -23,18 +24,20 @@ import java.util.ArrayList;
 
 /**
  * application home activity
- * @author Aymen Masmoudi[03.04.2021]
+ * @author Aymen Masmoudi[03.04.2021]last update[04.04.2021]
  * */
 public class HomeScreenActivity extends AppCompatActivity {
 
     private EditText etName, etEmail;
-    private Button btnDisconnect, btnSave;
+    private Button btnDisconnect, btnSave, btnNetUsers;
     private ListView lvUsers;
 
     private SharedPreferences userPrefs;
 
     private UsersAdapter adapter;
     private ArrayList<Users> arrayList;
+
+    private final int REQUEST_USER_UPDATE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_user_email);
         btnDisconnect = findViewById(R.id.btn_disconnect);
         btnSave = findViewById(R.id.btn_save);
+        btnNetUsers = findViewById(R.id.btn_net_users);
         lvUsers = findViewById(R.id.lv_users);
 
         //save a new user
@@ -80,8 +84,15 @@ public class HomeScreenActivity extends AppCompatActivity {
         lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int userId = arrayList.get(position).getId();
                 String name = arrayList.get(position).getName();
-                Toast.makeText(HomeScreenActivity.this, name, Toast.LENGTH_SHORT).show();
+                String email = arrayList.get(position).getEmail();
+                //open UpdateUserActivity
+                Intent update = new Intent(HomeScreenActivity.this, UpdateUserActivity.class);
+                update.putExtra("userId", userId);
+                update.putExtra("userName", name);
+                update.putExtra("userEmail", email);
+                startActivityForResult(update, REQUEST_USER_UPDATE);
             }
         });
 
@@ -115,6 +126,15 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        //open net users activity
+        btnNetUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent netUsers = new Intent(HomeScreenActivity.this, NetUsersActivity.class);
+                startActivity(netUsers);
+            }
+        });
+
         //read all users
         getUsers();
 
@@ -132,4 +152,12 @@ public class HomeScreenActivity extends AppCompatActivity {
         db.close();
     }
 
+    //detect start activity result
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_USER_UPDATE && resultCode == RESULT_OK) {
+            getUsers();
+        }
+    }
 }

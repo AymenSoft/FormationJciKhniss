@@ -27,6 +27,12 @@
         android:layout_below="@id/et_user_email"
         android:layout_alignParentEnd="true"
         android:text="@string/btn_save"/>
+    <Button
+        android:id="@+id/btn_net_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_email"
+        android:text="NetUsers"/>
 
     <ListView
         android:id="@+id/lv_users"

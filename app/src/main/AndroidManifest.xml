@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.formationjcikhniss">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FormationJCIKhniss">
-        <activity android:name=".HomeScreenActivity"></activity>
+        <activity android:name=".NetUsersActivity"></activity>
+        <activity android:name=".UpdateUserActivity" />
+        <activity android:name=".HomeScreenActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
