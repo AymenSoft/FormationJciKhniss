@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,17 +20,18 @@ import android.widget.Toast;
 import com.app.formationjcikhniss.adapters.UsersAdapter;
 import com.app.formationjcikhniss.models.Users;
 import com.app.formationjcikhniss.sqlite.UsersDB;
+import com.bugsnag.android.Bugsnag;
 
 import java.util.ArrayList;
 
 /**
  * application home activity
- * @author Aymen Masmoudi[03.04.2021]last update[04.04.2021]
+ * @author Aymen Masmoudi[03.04.2021]last update[10.04.2021]
  * */
 public class HomeScreenActivity extends AppCompatActivity {
 
     private EditText etName, etEmail;
-    private Button btnDisconnect, btnSave, btnNetUsers;
+    private Button btnDisconnect, btnSave, btnNetUsers, btnMaps;
     private ListView lvUsers;
 
     private SharedPreferences userPrefs;
@@ -51,6 +53,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         btnDisconnect = findViewById(R.id.btn_disconnect);
         btnSave = findViewById(R.id.btn_save);
         btnNetUsers = findViewById(R.id.btn_net_users);
+        btnMaps = findViewById(R.id.btn_maps);
         lvUsers = findViewById(R.id.lv_users);
 
         //save a new user
@@ -96,6 +99,16 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        //open google maps
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent maps = new Intent(HomeScreenActivity.this, MapsActivity.class);
+                startActivity(maps);
+            }
+        });
+
+        //disconnect user account
         btnDisconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

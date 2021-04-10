@@ -9,5 +9,7 @@
     <string name="btn_save">save</string>
     <string name="btn_update">Update</string>
     <string name="btn_delete">Delete</string>
+    <string name="btn_maps">Maps</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

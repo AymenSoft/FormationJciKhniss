@@ -47,4 +47,10 @@ dependencies {
     implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.google.code.gson:gson:2.8.5'
+    //google ads
+    implementation 'com.google.android.gms:play-services-ads:20.0.0'
+    //google maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    //bugsnag
+    implementation "com.bugsnag:bugsnag-android:5.9.0"
 }
